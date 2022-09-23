@@ -1,0 +1,25 @@
+﻿@model HomeViewModel
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="text-light site-heading">
+                <h2><font color="#ff5a6e">@User.Identity.Name! </font>Пора найти свой автомобиль!</h2>
+            </div>
+        </div>
+    </div>
+}
+
+<div id="contact" class="contact-us-area default-padding text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 contact-form">
+                <h2>Поиск автомобиля</h2>
+
+                @Html.Partial("FormSearchCars", Model)
+  
+            </div>
+        </div>
+    </div>
+</div>

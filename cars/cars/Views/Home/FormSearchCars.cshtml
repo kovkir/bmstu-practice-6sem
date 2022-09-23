@@ -1,0 +1,75 @@
+﻿@model HomeViewModel
+
+<form asp-action="Index"
+      asp-controller="Home"
+      class="contact-form">
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Марка автомобиля"
+                       asp-for="filterCarViewModel.brand"
+                       type="text">
+
+                <span asp-validation-for="filterCarViewModel.brand" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Модель автомобиля"
+                       asp-for="filterCarViewModel.model"
+                       type="text">
+
+                <span asp-validation-for="filterCarViewModel.model" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Минимальная цена"
+                       asp-for="filterCarViewModel.minPrice"
+                       type="number">
+
+                <span asp-validation-for="filterCarViewModel.minPrice" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control"
+                       placeholder="Максимальная цена"
+                       asp-for="filterCarViewModel.maxPrice"
+                       type="number">
+
+                <span asp-validation-for="filterCarViewModel.maxPrice" />
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <h4>Категория автомобиля</h4>
+
+                <select asp-for="filterCarViewModel.categoryName" class="form-control form-control-lg">
+                    <option value=@null>Все автомобили</option>
+                    <option value="Электромобиль">Электромобили</option>
+                    <option value="Автомобиль с ДВС">Автомобили с ДВС</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <button type="submit">
+                    Найти автомобили
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

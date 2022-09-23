@@ -1,0 +1,85 @@
+﻿@model OrderViewModels
+
+<div id="contact" class="contact-us-area default-padding text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 contact-form">
+                <h2>Оформление заказа</h2>
+
+                <form asp-action="Checkout"
+                      asp-controller="Order"
+                      class="contact-form">
+
+                    <div class="validation" asp-validation-summary="ModelOnly"></div>
+                    <div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input class="form-control"
+                                       placeholder="Имя получателя"
+                                       asp-for="Name"
+                                       type="text">
+
+                                <span asp-validation-for="Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input class="form-control"
+                                       placeholder="Фамилия получателя"
+                                       asp-for="Surname"
+                                       type="text">
+
+                                <span asp-validation-for="Surname" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input class="form-control"
+                                       placeholder="Адрес доставки"
+                                       asp-for="Adress"
+                                       type="text">
+
+                                <span asp-validation-for="Adress" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input class="form-control"
+                                       placeholder="Телефон"
+                                       asp-for="Phone"
+                                       type="text">
+
+                                <span asp-validation-for="Phone" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input class="form-control"
+                                       placeholder="Email"
+                                       asp-for="Email"
+                                       type="text">
+
+                                <span asp-validation-for="Email" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row">
+
+                                <button type="submit">
+                                    Оформить заказ
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

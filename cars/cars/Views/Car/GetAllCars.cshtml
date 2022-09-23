@@ -1,0 +1,94 @@
+﻿@model CarViewModel
+
+@if (Model.filterCarViewModel.categoryName == "Электромобиль")
+{
+    <div class="text-light font-weight-bold">
+        <h2><b><font color="#ff5a6e">ЭЛЕКТРОМОБИЛИ</font></b></h2>
+    </div>
+
+    <div class="text-light font-weight-bold">
+        <h3><b>@Model.categories.FirstOrDefault(elem => elem.Name == "Электромобиль").Description</b></h3>
+    </div>
+}
+else if (Model.filterCarViewModel.categoryName == "Автомобиль с ДВС")
+{
+    <div class="text-light font-weight-bold">
+        <h2><b><font color="#ff5a6e">АВТОМОБИЛИ С ДВС</font></b></h2>
+    </div>
+
+    <div class="text-light font-weight-bold">
+        <h3><b>@Model.categories.FirstOrDefault(elem => elem.Name == "Автомобиль с ДВС").Description</b></h3>
+    </div>
+}
+else
+{
+    <div class="text-light font-weight-bold">
+        <h2><b><font color="#ff5a6e">ВСЕ АВТОМОБИЛИ</font></b></h2>
+    </div>
+}
+
+
+<div class="blog-area full-width">
+    <div class="container">
+        <div class="row">
+
+            <div class="text-light font-weight-bold">
+                <h2><b> <font color="#ff5a6e"> </font> </b></h2>
+            </div>
+
+            <div class="btn-group btn-group-lg btn-block col-md-offset-2" role="group" aria-label="Basic example">
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="Car"
+                   asp-action="GetAllCars"
+                   asp-route-sortOrder="@ViewBag.BrandSort"
+                   asp-route-brand="@Model.filterCarViewModel.brand"
+                   asp-route-model="@Model.filterCarViewModel.model"
+                   asp-route-categoryName="@Model.filterCarViewModel.categoryName"
+                   asp-route-minPrice="@Model.filterCarViewModel.minPrice"
+                   asp-route-maxPrice="@Model.filterCarViewModel.maxPrice">Марка</a>
+
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="Car"
+                   asp-action="GetAllCars"
+                   asp-route-sortOrder="@ViewBag.ModelSort"
+                   asp-route-brand="@Model.filterCarViewModel.brand"
+                   asp-route-model="@Model.filterCarViewModel.model"
+                   asp-route-categoryName="@Model.filterCarViewModel.categoryName"
+                   asp-route-minPrice="@Model.filterCarViewModel.minPrice"
+                   asp-route-maxPrice="@Model.filterCarViewModel.maxPrice">Модель</a>
+
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="Car"
+                   asp-action="GetAllCars"
+                   asp-route-sortOrder="@ViewBag.CategoryNameSort"
+                   asp-route-brand="@Model.filterCarViewModel.brand"
+                   asp-route-model="@Model.filterCarViewModel.model"
+                   asp-route-categoryName="@Model.filterCarViewModel.categoryName"
+                   asp-route-minPrice="@Model.filterCarViewModel.minPrice"
+                   asp-route-maxPrice="@Model.filterCarViewModel.maxPrice">Категория</a>
+
+                <a class="btn btn-secondary bg-light col-md-2"
+                   asp-controller="Car"
+                   asp-action="GetAllCars"
+                   asp-route-sortOrder="@ViewBag.PriceSort"
+                   asp-route-brand="@Model.filterCarViewModel.brand"
+                   asp-route-model="@Model.filterCarViewModel.model"
+                   asp-route-categoryName="@Model.filterCarViewModel.categoryName"
+                   asp-route-minPrice="@Model.filterCarViewModel.minPrice"
+                   asp-route-maxPrice="@Model.filterCarViewModel.maxPrice">Цена</a>
+            </div>
+
+            <h1></h1>
+
+            <div class="blog-items">
+                @foreach (Car car in Model.cars)
+                {
+                    ViewBag.CategoryName = Model.categories.FirstOrDefault(elem => elem.Id == car.CategoryId).Name;
+
+                    @Html.Partial("AllCars", car)
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

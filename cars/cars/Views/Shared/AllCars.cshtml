@@ -1,0 +1,24 @@
+﻿@model Car
+
+<div class="col-md-4 equal-height" style="height: 250px;">
+    <div class="item">
+        <div class="info">
+
+            <h4><font color="#ff5a6e">@Model.Brand</font></h4>
+            <h4>@Model.Model</h4>
+            <p>@ViewBag.CategoryName</p>
+            <p>@Model.Price $</p>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="read-more">
+                    <a asp-controller="MyCars"
+                       asp-action="GetMyCars"
+                       asp-route-isUpdate="@IsUpdata.CarIsAdded"
+                       asp-route-carId="@Model.Id"
+                       class="more-btn">Добавить в корзину</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

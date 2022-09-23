@@ -1,0 +1,92 @@
+﻿@model MyCarsViewModel
+
+@if (Model._isUpdate == IsUpdata.CarIsAdded)
+{
+    <div class="alert alert-success" role="alert">
+        <h4><strong>Автомобиль был добавлен!</strong> @Model.car.Brand @Model.car.Model готов к покупке.</h4>
+    </div>
+}
+else if (Model._isUpdate == IsUpdata.CarIsDeleted)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4><strong>Автомобиль был удален!</strong> @Model.car.Brand @Model.car.Model не будет куплен.</h4>
+    </div>
+}
+
+
+<div class="text-light font-weight-bold">
+    <h2><b>АВТОМОБИЛИ, ГОТОВЫЕ К <font color="#ff5a6e">ПОКУПКЕ</font></b></h2>
+</div>
+
+@if (Model.myCars.Count() > 0)
+{
+    <a class="btn btn-info btn-lg circle" style="background-color: #ff5a6e; border: #ff5a6e"
+       asp-controller="Order"
+       asp-action="Checkout">Купить автомобили</a>
+}
+
+
+<div class="blog-area full-width">
+    <div class="container">
+        <div class="row">
+
+            @if (Model.myCars.Count() > 0)
+            {
+                <div class="btn-group btn-group-lg btn-block col-md-offset-2" role="group" aria-label="Basic example">
+                    <a class="btn btn-secondary bg-light col-md-2"
+                       asp-controller="MyCars"
+                       asp-action="GetMyCars"
+                       asp-route-sortOrder="@ViewBag.BrandSort">Марка</a>
+
+                    <a class="btn btn-secondary bg-light col-md-2"
+                       asp-controller="MyCars"
+                       asp-action="GetMyCars"
+                       asp-route-sortOrder="@ViewBag.ModelSort">Модель</a>
+
+                    <a class="btn btn-secondary bg-light col-md-2"
+                       asp-controller="MyCars"
+                       asp-action="GetMyCars"
+                       asp-route-sortOrder="@ViewBag.CategoryNameSort">Категория</a>
+
+                    <a class="btn btn-secondary bg-light col-md-2"
+                       asp-controller="MyCars"
+                       asp-action="GetMyCars"
+                       asp-route-sortOrder="@ViewBag.PriceSort">Цена</a>
+                </div>
+
+                <h1></h1>
+            }
+
+            <div class="blog-items">
+                @if (Model.myCars.Count() == 0)
+                {
+                    <div class="col-md-4 col-md-offset-4 equal-height" style="height: 150px;">
+                        <div class="item">
+                            <div class="info">
+                                <h4>Пусто</h4>
+                                <p>Автомобилей в корзине нет</p>
+
+                                <div class="read-more">
+                                    <a asp-controller="Car"
+                                       asp-action="GetAllCars"
+                                       class="more-btn">Добавить авто</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (Car car in Model.myCars)
+                    {
+                        ViewBag.CategoryName = Model.categories.FirstOrDefault(elem => elem.Id == car.CategoryId).Name;
+
+                        @Html.Partial("MyCars", car)
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

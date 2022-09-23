@@ -1,0 +1,786 @@
+\documentclass[a4paper,14pt, unknownkeysallowed]{extreport}
+
+\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[english,russian]{babel} % Языки: русский, английский
+\usepackage{enumitem}
+
+
+\usepackage{threeparttable}
+
+\usepackage[14pt]{extsizes}
+
+\usepackage{caption}
+\captionsetup{labelsep=endash}
+\captionsetup[figure]{name={Рисунок}}
+
+% \usepackage{ctable}
+% \captionsetup[table]{justification=raggedleft,singlelinecheck=off}
+
+\usepackage{amsmath}
+
+\usepackage{geometry}
+\geometry{left=30mm}
+\geometry{right=10mm}
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+
+\usepackage{titlesec}
+\titleformat{\section}
+	{\normalsize\bfseries}
+	{\thesection}
+	{1em}{}
+\titlespacing*{\chapter}{0pt}{-30pt}{8pt}
+\titlespacing*{\section}{\parindent}{*4}{*4}
+\titlespacing*{\subsection}{\parindent}{*4}{*4}
+
+\usepackage{setspace}
+\onehalfspacing % Полуторный интервал
+
+\frenchspacing
+\usepackage{indentfirst} % Красная строка
+
+\usepackage{titlesec}
+\titleformat{\chapter}{\LARGE\bfseries}{\thechapter}{20pt}{\LARGE\bfseries}
+\titleformat{\section}{\Large\bfseries}{\thesection}{20pt}{\Large\bfseries}
+
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Для листинга кода:
+\lstset{%
+	language=[Sharp]C,   			    % выбор языка для подсветки	
+	basicstyle=\small\sffamily,			% размер и начертание шрифта для подсветки кода
+	numbers=left,						% где поставить нумерацию строк (слева\справа)
+	numberstyle=\tiny,		     		% размер шрифта для номеров строк
+	stepnumber=1,						% размер шага между двумя номерами строк
+	numbersep=5pt,						% как далеко отстоят номера строк от подсвечиваемого кода
+	frame=single,						% рисовать рамку вокруг кода
+	tabsize=4,							% размер табуляции по умолчанию равен 4 пробелам
+	captionpos=t,						% позиция заголовка вверху [t] или внизу [b]
+	breaklines=true,					
+	breakatwhitespace=true,				% переносить строки только если есть пробел
+	backgroundcolor=\color{white},
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\color{blue},
+	stringstyle=\color{red},
+	commentstyle=\color{gray}
+	showspaces=false,
+    showstringspaces=false,
+}
+
+
+\usepackage{pgfplots}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+
+
+\lstset{
+	literate=
+	{а}{{\selectfont\char224}}1
+	{б}{{\selectfont\char225}}1
+	{в}{{\selectfont\char226}}1
+	{г}{{\selectfont\char227}}1
+	{д}{{\selectfont\char228}}1
+	{е}{{\selectfont\char229}}1
+	{ж}{{\selectfont\char230}}1
+	{з}{{\selectfont\char231}}1
+	{и}{{\selectfont\char232}}1
+	{й}{{\selectfont\char233}}1
+	{к}{{\selectfont\char234}}1
+	{л}{{\selectfont\char235}}1
+	{м}{{\selectfont\char236}}1
+	{н}{{\selectfont\char237}}1
+	{о}{{\selectfont\char238}}1
+	{п}{{\selectfont\char239}}1
+	{р}{{\selectfont\char240}}1
+	{с}{{\selectfont\char241}}1
+	{т}{{\selectfont\char242}}1
+	{у}{{\selectfont\char243}}1
+	{ф}{{\selectfont\char244}}1
+	{х}{{\selectfont\char245}}1
+	{ц}{{\selectfont\char246}}1
+	{ч}{{\selectfont\char247}}1
+	{ш}{{\selectfont\char248}}1
+	{щ}{{\selectfont\char249}}1
+	{ъ}{{\selectfont\char250}}1
+	{ы}{{\selectfont\char251}}1
+	{ь}{{\selectfont\char252}}1
+	{э}{{\selectfont\char253}}1
+	{ю}{{\selectfont\char254}}1
+	{я}{{\selectfont\char255}}1
+	{А}{{\selectfont\char192}}1
+	{Б}{{\selectfont\char193}}1
+	{В}{{\selectfont\char194}}1
+	{Г}{{\selectfont\char195}}1
+	{Д}{{\selectfont\char196}}1
+	{Е}{{\selectfont\char197}}1
+	{Ж}{{\selectfont\char198}}1
+	{З}{{\selectfont\char199}}1
+	{И}{{\selectfont\char200}}1
+	{Й}{{\selectfont\char201}}1
+	{К}{{\selectfont\char202}}1
+	{Л}{{\selectfont\char203}}1
+	{М}{{\selectfont\char204}}1
+	{Н}{{\selectfont\char205}}1
+	{О}{{\selectfont\char206}}1
+	{П}{{\selectfont\char207}}1
+	{Р}{{\selectfont\char208}}1
+	{С}{{\selectfont\char209}}1
+	{Т}{{\selectfont\char210}}1
+	{У}{{\selectfont\char211}}1
+	{Ф}{{\selectfont\char212}}1
+	{Х}{{\selectfont\char213}}1
+	{Ц}{{\selectfont\char214}}1
+	{Ч}{{\selectfont\char215}}1
+	{Ш}{{\selectfont\char216}}1
+	{Щ}{{\selectfont\char217}}1
+	{Ъ}{{\selectfont\char218}}1
+	{Ы}{{\selectfont\char219}}1
+	{Ь}{{\selectfont\char220}}1
+	{Э}{{\selectfont\char221}}1
+	{Ю}{{\selectfont\char222}}1
+	{Я}{{\selectfont\char223}}1
+}
+
+\usepackage{graphicx}
+\newcommand{\img}[3] {
+	\begin{figure}[h!]
+		\center{\includegraphics[height=#1]{img/#2}}
+		\caption{#3}
+		\label{img:#2}
+	\end{figure}
+}
+
+
+\usepackage[justification=centering]{caption} % Настройка подписей float объектов
+
+\usepackage[unicode,pdftex]{hyperref} % Ссылки в pdf
+\hypersetup{hidelinks}
+
+\usepackage{csvsimple}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\usepackage{longtable}
+
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{floatrow}
+
+\floatsetup[longtable]{LTcapwidth=table}
+
+\def\UrlBreaks{\do\/\do-\do\_}
+
+\makeatletter
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\normalfont\leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hfill\nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+\makeatother
+
+\begin{document}
+
+
+
+
+\renewcommand{\contentsname}{Содержание} 
+\tableofcontents
+
+
+\setcounter{page}{3}
+\chapter*{Введение}
+\addcontentsline{toc}{chapter}{Введение}
+
+В настоящие время огрмное количество людей тратит много времени и денег при покупке автомобиля. 
+
+Траты жителей нашей страны на покупку подержанных легковых автомобилей в последние 6 лет составляли 2 --- 3 трлн рублей ежегодно, подсчитали эксперты аналитического агентства «АВТОСТАТ». Так, по данным агентства «АВТОСТАТ», с 2015-го по 2020 годы объем вторичного рынка вырос на 12\% (с 4,9 млн до 5,5 млн единиц). При этом средневзвешенная цена автомобиля с пробегом за этот период увеличилась на 32\%. Если в 2015 году ее показатель составлял почти 415 тыс. рублей, то в 2020-м --- уже 548,7 тыс. рублей. Затраты на покупку подержанных машин все эти годы тоже росла – за 5 лет она увеличилась почти в 1,5 раза (с 1,99 трлн до 2,94 трлн рублей) [1].
+
+% Источник: https://www.autostat.ru/infographics/48081/ © Автостат.
+
+Учитывая все вышеуказанное, можно сделать вывод о том, что интерес к автомобилям огромный. Создание интернет-магазина автомобилей поможет пользователям организовать и структурировать процесс поиска транспортного средства.
+
+\textbf{Целью} практики является разработка веб-приложения для интернет-магазина автомобилей.
+
+Для достижения поставленной цели необходимо выполнить следующие задачи:
+
+\begin{itemize}
+	\item формализовать задачу и определить необходимый функционал;
+	\item рассмотреть модели баз данных и выбрать подходящую;
+	\item проанализировать существующие СУБД и выбрать нужную;
+ 	\item спроектировать и разработать БД;
+    \item спроектировать и разработать WEB-приложение.
+\end{itemize}
+
+\chapter{Характеристика организации и подразделения}
+
+\section{Характеристика организации}
+
+Направления деятельности АО <<НИИ ТП>> включает в себя разработку и изготовление следующих основных видов изделий, а также проведения их полномасштабных испытаний на воздействие различных факторов окружающей среды [2].
+
+\begin{itemize}
+	\item Комплексы автоматизированного управления космическими аппаратами.
+	\item Радиотехнические системы взаимных измерений (СВИ) для поиска, сближения и стыковки космических аппаратов.
+ 	\item Комплексы приема, обработки, распределения и доведения до потребителей информации дистанционного зондирования Земли.
+  	\item Радиолокационные системы наблюдения Земли самолетного и космического базирования.
+    \item Радиотехнические комплексы для низкоорбитальных спутниковых систем связи, обеспечивающие глобальность передачи данных.
+    \item Системы сбора, хранения и высокоскоростной передачи информации.
+    \item Серийное изготовление геопространственной продукции.
+\end{itemize}
+
+\section{Характеристика подразделения}
+
+Отдел АО <<НИИ ТП>>, в котором я проходил практику, занимается проектированием систем защиты на изделия, созданием моделей угроз, а также установкой и настройкой систем защиты.
+
+\chapter{Аналитическая часть}
+
+\section{Формализация задачи}
+
+В ходе выполнения практики необходимо спроектировать и разработать веб-приложение про автомобили, которое будет предоставлять интерфейс для взаимодействия с базой данных с возможностью добавлять каждому отдельному пользователю понравившиеся автомобили в корзину. Также необходимо разработать базу данных для хранения информации об автомобилях, их категориях, а также иинформации о пользователях.
+
+Требуется реализовать функциональность для разных категорий пользователей, каждый из которых получит свой определённый набор прав.
+
+\section{Формализация данных}
+
+Разрабатываемая база данных должна содержать информацию о об автомобилях, их категориях, а также иинформацию о пользователях.
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{longtable}[c]{|c|c|}
+\caption{Классификация сведений о данных}
+	\\ \hline
+	\textbf{Категория} & \textbf{Информация}
+	\\ \hline
+	Автомобиль   & Название бренда, название модели, цена, 
+	\\           & принадлежность к виду автомобилей
+	\\ \hline
+	Категория    & Название, описание
+	\\ \hline
+	Заказ        & Имя, фамилия, адрес доставки, 
+	\\           & номер телефона, email
+	\\ \hline
+	Пользователь & Логин, пароль, категория пользователя
+	\\ \hline
+\end{longtable}
+\end{center}
+
+\section{Формализация категорий пользователя}
+
+Для взаимодействия с веб-приложением было выделено две категории пользователя:
+
+\begin{itemize}
+	\item гость;
+ 	\item авторизованный пользователь.
+\end{itemize}
+
+Гость (неавторизованный пользователь) сможет просматривать базовую информацию об автомобилях.
+
+Для получения дополнительного функционала пользователю необходимо авторизоваться. Зарегистрированный пользователь в качестве дополнительного функционала получит возможность добавлять понравившиеся авто в корзину, а также оформить их заказ. 
+
+
+\section{Модели баз данных}
+
+База данных --- это любая совокупность информации, которая была систематизирована для быстрого поиска с помощью компьютера. Базы данных используются для хранения, изменения, удаления и доступа к любым данным. Система управления базами данных (СУБД) использует запросы для извлечения информации из базы данных.
+
+Модель базы данных определяет логическую структуру базы данных и то, каким образом данные могут храниться, организовываться и обрабатываться.
+
+Существует три основных типа модели баз данных:
+
+\begin{itemize}
+    \item дореляционные;
+    \item реляционные;
+    \item постреляционные.
+\end{itemize}
+
+\subsection{Дореляционные модели}
+
+К дореляционным моделям баз данных относятся иерархическая и сетевая модели. 
+
+В иерархической модели записи связаны по принципу <<родитель-потомок>>, при этом каждый родитель может быть связан с более чем одним дочерним элементом, но каждый дочерний элемент связан только с одним родителем. У такой модели есть проблемы с отношениями <<многие ко многим>>. Кроме того, в иерархической модели добавление новых связей может привести к массовым изменениям существующей структуры.
+
+Сетевая модель базы данных позволяет каждой записи иметь несколько родительских и несколько дочерних записей. Эта модель была создана на замену иерархической модели, так как она может обрабатывать отношения <<многие ко многим>>.
+
+Самая большая проблема с дореляционными моделями баз данных заключалась в отсутствие структурной независимости --- внести структурные изменения в базу данных было очень сложно.
+
+\subsection{Реляционные модели}
+
+В реляционных моделях [3] данные организованы в набор двумерных взаимосвязанных таблиц. Каждая из которых представляет собой набор столбцов и строк, где столбец представляет атрибуты сущности, а строки представляют записи.
+Использование таблиц для хранения данных обеспечило простой и эффективный способ хранения структурированной информации, доступа к ней, а также легкую сортировку.
+
+\subsection{Постреляционные модели}
+
+Постреляционные базы данных [4] реализуют схему с использованием нереляционной модели данных. Такие БД поддерживают логическую модель данных, ориентированную на обработку транзакций. 
+Постреляционные базы данных включают хранилища данных с ключевыми значениями, сетевые и графовые базы данных, а также базы данных, ориентированные на документы. 
+Недостатком такой модели является сложность решения проблемы обеспечения целостности и непротиворечивости хранимых данных.
+
+\section{Вывод}
+
+В данном разделе были формализованы поставленная задача, данные, а также категории пользователя. Были рассмотрены модели баз данных. Для решения поставленной задачи была выбрана реляционная модель, так как для разрабатываемой базы данных важна целостность хранимых данных, а также простота хранения структурированной информации и ее сортировка.
+
+
+
+\chapter{Технологическая часть}
+
+\section{Средства реализации ПО}
+
+Для написания Web-приложения был выбран язык программирования C\# [5]. Такой решение обусловлено следующими причинами.
+
+\begin{itemize}
+    \item Главной причиной выбора C\# стала его Web-поддержка.
+    \item Данный язык поддерживает объектно-ориентированную парадигму программирования, что было обязательным требованием для выбора языка разработки.
+    \item C\# многим похож на ранее знакомые мне языки программирования, такие как C++ и C, что также помогло склонить чашу весов в пользу C\#. 
+\end{itemize}
+
+В качестве среды разработки был выбран Visual Studio [6]. Такой решение обусловлено следующими причинами.
+
+\begin{itemize}
+	\item Главным требованием при выборе среды разработки была Web-поддержка, которая имеется у Visual Studio.
+	\item VS является бесплатным программным обеспечением, что также было важным требованием при выборе среды.
+	\item Visual Studio доступна на macOS.
+\end{itemize}
+
+При выборе платформы Web-разработки рассматривались два фреймворка на платформе .NET. Это ASP.NET [7] и ASP.NET Core [8]. В пользу выбора второго из них повлияли следующие причины.
+
+\begin{itemize}
+    \item Данная платформа имеет большую производительность по сравнению с ASP.NET.
+    \item ASP.NET Core предназначена для Windows, macOS и Linux, в свою очередь как ASP.NET только для Windows.
+\end{itemize}
+
+Другие платформы не рассматривались, так как ранее в качестве языка программирования был выбран C\#, а средой разработки Visual Studio.
+
+\section{Архитектура приложения}
+
+За основу архитектуры разрабатываемого Web-приложения была взята модель MVC (MODEL, VIEW, CONTROLLER). Эта модель помогает обеспечить разделение между бизнес-логикой программного обеспечения и отображением. 
+
+Фреймворк MVC включает в себя следующие три компонента.
+
+\begin{itemize}
+    \item Модель -- управляет данными и бизнес-логикой.
+    \item Представление --  используется для всей логики пользовательского интерфейса приложения.
+    \item Контроллер -- обеспечивает взаимосвязь между представлениями и моделью, поэтому он действует как посредник.
+\end{itemize}
+
+ASP.NET Core поддерживает модель разработки MVC. ASP.NET Core MVC framework [9] -- это легкий, легко тестируемый фреймворк представления, который интегрирован с существующими ASP.NET Core функциями.
+
+\section{Выбор СУБД}
+
+В аналитическом разделе при выборе типа модели баз данных была выбрана реляционная модель, следовательно выбор СУБД будет производиться для реляционной модели баз данных. Рассмотрим только самые популярные из них: MySQL, Oracle, PostgreSQL [10], Microsoft SQL Server.
+
+Выделим слудующие критерии для сравнения выбранных СУБД:
+
+\begin{enumerate}
+    \item бесплатное распространение СУБД, что будет главным требованием при выборе;
+    \item наличие подробной документации, которая поможет разобраться во всех возникших проблемах;
+    \item наличие высокого уровня оптимизации СУБД, что будет отличным плюсом при выборе;
+    \item опыт работы с СУБД, не является основным требованием, но очень желательным.
+\end{enumerate}
+
+Результаты сравнения выбранных СУБД по заданным критериям представлены в таблице \ref{tbl:compare_DBMS}.
+
+\captionsetup{justification=raggedleft,singlelinecheck=off}
+\begin{table}[H]
+    \centering
+	\caption{Сравнение выбранных СУБД}
+    \label{tbl:compare_DBMS}
+	\begin{tabular}{|l|l|l|l|l|}
+        \hline
+        \textbf{Критерий} & \textbf{MySQL} & \textbf{Oracle} & \textbf{PostgreSQL} & \textbf{Microsoft SQL Server} \\ \hline
+
+        1 & + & - & + & - \\ \hline
+        2 & + & + & + & + \\ \hline
+        3 & + & - & + & - \\ \hline
+        4 & - & - & + & - \\ \hline
+
+    \end{tabular}
+\end{table}
+
+По результатам сравнения в качестве СУБД для реляционной модели баз данных был выбран PostgreSQL, так как он едениственный удовлетворил всем четырем критериям сравнения.
+
+\clearpage
+
+\section{Листинги кода}
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:GetAllCars,caption=Функция вывода всех автомобилей]
+public IActionResult GetAllCars(CarSortState sortOrder = CarSortState.IdAsc,
+								string brand = null, string model = null,
+								uint minPrice = 0, uint maxPrice = 0, 
+								string categoryName = null)
+{
+	ViewBag.Title = "Cars";
+
+	ViewData["IdSort"] = sortOrder == CarSortState.IdAsc ? CarSortState.IdDesc : CarSortState.IdAsc;
+	ViewData["BrandSort"] = sortOrder == CarSortState.BrandAsc ? CarSortState.BrandDesc : CarSortState.BrandAsc;
+	ViewData["ModelSort"] = sortOrder == CarSortState.ModelAsc ? CarSortState.ModelDesc : CarSortState.ModelAsc;
+	ViewData["CategoryNameSort"] = sortOrder == CarSortState.CategoryNameAsc ? CarSortState.CategoryNameDesc : CarSortState.CategoryNameAsc;
+	ViewData["PriceSort"] = sortOrder == CarSortState.PriceDesc ? CarSortState.PriceAsc : CarSortState.PriceDesc;
+
+	IEnumerable<Car> cars = carService.GetByParameters(brand, model, minPrice, maxPrice, categoryName);
+
+	CarViewModel carViewModel = new CarViewModel
+	{
+		cars = carService.GetSortCarsByOrder(cars, sortOrder),
+		categories = categoryService.GetAll(),
+
+		filterCarViewModel = new FilterCarViewModel
+		{
+			brand = brand,
+			model = model,
+			minPrice = minPrice,
+			maxPrice = maxPrice,
+			categoryName = categoryName
+		}
+	};
+
+	return View(carViewModel);
+}
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:GetMyCars,caption=Функция вывода всех добавленных в корзину автомобилей]
+public IActionResult GetMyCars(CarSortState sortOrder = CarSortState.IdAsc,
+							   IsUpdata isUpdate = IsUpdata.IsNotUpdate, 
+							   int carId = 0)
+{
+	ViewBag.Title = "MyCars";
+
+	ViewData["IdSort"] = sortOrder == CarSortState.IdAsc ? CarSortState.IdDesc : CarSortState.IdAsc;
+	ViewData["BrandSort"] = sortOrder == CarSortState.BrandAsc ? CarSortState.BrandDesc : CarSortState.BrandAsc;
+	ViewData["ModelSort"] = sortOrder == CarSortState.ModelAsc ? CarSortState.ModelDesc : CarSortState.ModelAsc;
+	ViewData["CategoryNameSort"] = sortOrder == CarSortState.CategoryNameAsc ? CarSortState.CategoryNameDesc : CarSortState.CategoryNameAsc;
+	ViewData["PriceSort"] = sortOrder == CarSortState.PriceDesc ? CarSortState.PriceAsc : CarSortState.PriceDesc;
+
+	User user = userService.GetByLogin(User.Identity.Name);
+	IEnumerable<Car> myCars = carService.UpdateMyCars(isUpdate, user.Id, carId);
+
+	MyCarsViewModel myCarsViewModel = new MyCarsViewModel
+	{
+		myCars = carService.GetSortCarsByOrder(myCars, sortOrder),
+		categories = categoryService.GetAll(),
+
+		car = carService.GetByID(carId),
+
+		_isUpdate = isUpdate
+	};
+
+	return View(myCarsViewModel);
+}
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:Index,caption=Функция поиска автомобилей по заданным параметрам]
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult Index(HomeViewModel model)
+{
+	ViewBag.Title = "Find";
+
+	if (ModelState.IsValid)
+	{
+		uint minPrice = checkForNull(model.filterCarViewModel.minPrice);
+		uint maxPrice = checkForNull(model.filterCarViewModel.maxPrice);
+
+		return RedirectToAction("GetAllCars", "Car",
+			new
+			{
+				brand = model.filterCarViewModel.brand,
+				model = model.filterCarViewModel.model,
+				minPrice = minPrice,
+				maxPrice = maxPrice,
+				categoryName = model.filterCarViewModel.categoryName
+			});
+	}
+	else
+		ModelState.AddModelError("", "Некорректные данные");
+
+	return View(model);
+}
+\end{lstlisting}
+\end{center}
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:Checkout,caption=Функция оформления заказа]
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult Checkout(OrderViewModels model)
+{
+	ViewBag.Title = "Order";
+
+	if (ModelState.IsValid)
+	{
+		carService.DeleteMyCarsByUserLogin(User.Identity.Name);
+
+		return RedirectToAction("Success", "Order");
+	}
+	else
+		ModelState.AddModelError("", "Некорректные данные");
+
+	return View(model);
+}
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:Register,caption=Функция регистрации]
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Register(RegisterViewModel model)
+{
+	ViewBag.Title = "Register";
+
+	if (ModelState.IsValid)
+	{
+		try
+		{
+			User user = new User
+			{
+				Login = model.Login,
+				Password = model.Password,
+				Permission = "user"
+			};
+
+			userService.Add(user);
+
+			await Authenticate(user);
+
+			return RedirectToAction("Index", "Home");
+		}
+		catch (Exception ex)
+		{
+			Console.Write(ex.Message);
+			ModelState.AddModelError("", ex.Message);
+		}
+	}
+	else
+		ModelState.AddModelError("", "Некорректные данные");
+
+	return View(model);
+}
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\captionsetup{justification=raggedright,singlelinecheck=off}
+\begin{lstlisting}[label=lst:Login,caption=Функция авторизации]
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Login(LoginViewModel model)
+{
+	ViewBag.Title = "Login";
+
+	if (ModelState.IsValid)
+	{
+		User user = userService.GetByLogin(model.Login);
+
+		if (user != null && user.Password == model.Password)
+		{
+			await Authenticate(user);
+
+			return RedirectToAction("Index", "Home");
+		}
+		else
+			ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+	}
+	else
+		ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+
+	return View(model);
+}
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\section{Демонстрация работы веб-приложения}
+
+На рисунке \ref{fig:search} изображена начальная страница веб-приложения. Здесь можно реализовать поиск автомобиля по параметрам. На рисунке \ref{fig:category} показан выбор категории автомобиля. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{img/search.png}
+	\caption{Начальная страница}
+	\label{fig:search}
+\end{figure} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{img/category.png}
+	\caption{Выбор категории автомобиля для поиска по параметрам}
+	\label{fig:category}
+\end{figure} 
+
+\clearpage
+
+На рисунках \ref{fig:classic_cars} - \ref{fig:electric_cars} изображены страницы с разными видами автомоболей.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.24]{img/classic_cars.png}
+	\caption{Страница с автомобилями с ДВС}
+	\label{fig:classic_cars}
+\end{figure} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.24]{img/electric_cars.png}
+	\caption{Страница с электромобилями}
+	\label{fig:electric_cars}
+\end{figure} 
+
+\clearpage
+
+На страницах с автомобилями реализована сортировка по четырём параметрам (как по возрастанию, так и по убыванию).
+На рисунках \ref{fig:sort_price} - \ref{fig:sort_model} изображены страницы с отсортированными автомобилями.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.23]{img/sort_price.png}
+	\caption{Автомобили, отсортированные по убыванию их стоимости}
+	\label{fig:sort_price}
+\end{figure} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.23]{img/sort_model.png}
+	\caption{Автомобили, отсортированные по их моделям в алфавитном порядке}
+	\label{fig:sort_model}
+\end{figure} 
+
+\clearpage
+
+На рисунках \ref{fig:car_added} - \ref{fig:car_deleted} показано добавление одного автомобиля в корзину, а также удаление другого из неё.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.24]{img/car_added.png}
+	\caption{Добавление автомобиля в корзину}
+	\label{fig:car_added}
+\end{figure} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.24]{img/car_deleted.png}
+	\caption{Удаление автомобиля из корзины}
+	\label{fig:car_deleted}
+\end{figure} 
+
+\clearpage
+
+Добавленные в корзину автомобили можно заказать, оформив заказ. На рисунках \ref{fig:order} - \ref{fig:order_success} показано оформление заказа.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.24]{img/order.png}
+	\caption{Страница оформления заказа}
+	\label{fig:order}
+\end{figure} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.24]{img/order_success.png}
+	\caption{Заказ успешно оформлен}
+	\label{fig:order_success}
+\end{figure} 
+
+\clearpage
+
+На рисунках \ref{fig:register} - \ref{fig:login} изображена регистрация и авторизация пользователя.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.24]{img/register.png}
+	\caption{Страница регистрации}
+	\label{fig:register}
+\end{figure} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.24]{img/login.png}
+	\caption{Страница авторизации}
+	\label{fig:login}
+\end{figure} 
+
+Если пользователь не авторизировался, то он не сможет добавить понравившиеся автомобили в корзину, а также оформить заказ.
+
+\clearpage
+
+\section{Вывод}
+
+В данном разделе были описаны средства реализации ПО, архитектура приложения, был произведен выбор СУБД для реляционной модели БД. После сравнения самых популярных СУБД по выделенным критериям был выбран PostgreSQL, так как он единственный подошел по всем требованиям. Также были приведены листинги кода некоторых функций программного обеспечения. Была продемонстрирована работа веб-приложения.
+
+
+\chapter*{Заключение}
+\addcontentsline{toc}{chapter}{Заключение}
+
+Во время выполнения практики была разработана база данных, а также создано Web-приложение для интернет магазина автомобилей. Были рассмотрены модели баз данных и произведен выбор СУБД для реляционной модели БД. После сравнения самых популярных СУБД по выделенным критериям для поставленной задачи был выбран PostgreSQL.
+
+Проделанная работа позволила лучше изучить как язык программирования C\#, так и среду разработки Visual Studia.\newline
+
+Также в ходе выполнения практики были выполнены следующие задачи:
+
+\begin{itemize}
+	\item формализовать задачу и определить необходимый функционал;
+	\item рассмотреть модели баз данных и выбрать подходящую;
+	\item проанализировать существующие СУБД и выбрать нужную;
+ 	\item спроектировать и разработать БД;
+    \item спроектировать и разработать WEB-приложение.
+\end{itemize}
+
+Поставленная цель была достигнута.
+
+\begin{thebibliography}{11}
+	\bibitem{bib1}
+	Аналитическое агентство АВТОСТАТ [Электронный ресурс]. -- URL: \url{https://www.autostat.ru} (дата обращения: 18.07.2022).
+	\bibitem{bib2}
+	Научно-исследовательский институт точных приборов [Электронный ресурс]. -- URL: \url{https://niitp.ru} (дата обращения: 18.07.2022).
+	\bibitem{bib3}
+	What is a Relational Database (RDBMS)? [Электронный ресурс]. -- URL: \url{https://www.oracle.com/database/what-is-a-relational-database/} (дата обращения: 18.07.2022).
+	\bibitem{bib4}
+	Нереляционные данные и базы данных NoSQL [Электронный ресурс]. -- URL: \url{https://www.oracle.com/database/what-is-a-relational-database/} (дата обращения: 18.07.2022).
+	\bibitem{bib5}
+	Документация по C\# [Электронный ресурс]. -- URL: \url{https://docs.microsoft.com/ru-ru/dotnet/csharp/} (дата обращения: 18.07.2022).
+	\bibitem{bib6}
+	Visual Studio [Электронный ресурс]. -- URL: \url{https://visualstudio.microsoft.com/ru/} (дата обращения: 18.07.2022).
+	\bibitem{bib7}
+	ASP.NET [Электронный ресурс]. -- URL: \url{https://dotnet.microsoft.com/en-us/apps/aspnet} (дата обращения: 18.07.2022).
+	\bibitem{bib8}
+	Общие сведения об ASP.NET Core [Электронный ресурс]. -- URL: \url{https://docs.microsoft.com/ru-ru/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-6.0} (дата обращения: 18.07.2022).
+	\bibitem{bib9}
+	Общие сведения ASP.NET Core MVC [Электронный ресурс]. -- URL: \url{https://docs.microsoft.com/ru-ru/aspnet/core/mvc/overview?view=aspnetcore-6.0} (дата обращения: 18.07.2022).
+	\bibitem{bib10}
+	PostgreSQL [Электронный ресурс]. -- URL: \url{https://www.postgresql.org/docs/} (дата обращения: 18.07.2022).
+\end{thebibliography}
+
+\addcontentsline{toc}{chapter}{Список литературы}
+
+\end{document}
